@@ -4,19 +4,18 @@ cache:
   - $HOME/.m2
   - $HOME/.gradle
   - $HOME/.android
+  - $HOME/.android-sdk
+install: true
+env:
+  - ANDROID_HOME=$HOME/.android-sdk
+  - PATH=$ANDROID_HOME/bin:$PATH
 jdk: oraclejdk8
-language: android
-android:
-  components:
-    - tools
-    - platform-tools
-    - build-tools-19.1
-    - android-16
-    - extra
-    - extra-google-m2repository
-    - extra-android-m2repository
+language: java
 before_script:
   - ./gradlew --version
-script: ./gradlew -S -Dscan build jacocoTestReport jacocoRootReport
+script:
+  - mkdir -p $HOME/.android-sdk && cp -a $TRAVIS_BUILD_DIR/android-sdk/* $HOME/.android-sdk/
+  - echo "sdk.dir = $ANDROID_HOME" > local.properties
+  - ./gradlew -S -Dscan build jacocoTestReport jacocoRootReport
 after_success:
   - ./gradlew coveralls
