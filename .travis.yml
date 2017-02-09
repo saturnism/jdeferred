@@ -7,15 +7,15 @@ cache:
   - $HOME/.android-sdk
 install: true
 env:
-  - ANDROID_HOME=$HOME/.android-sdk
-  - PATH=$ANDROID_HOME/bin:$PATH
+- ANDROID_HOME=$HOME/.android-sdk
+- PATH=$ANDROID_HOME/bin:$PATH
 jdk: oraclejdk8
 language: java
 before_script:
-  - ./gradlew --version
+- ./gradlew --version
 script:
-  - mkdir -p $HOME/.android-sdk && cp -a $TRAVIS_BUILD_DIR/android-sdk/* $HOME/.android-sdk/
-  - echo "sdk.dir = $ANDROID_HOME" > local.properties
-  - ./gradlew -S -Dscan build jacocoTestReport jacocoRootReport
+- mkdir -p $HOME/.android-sdk && cp -a $TRAVIS_BUILD_DIR/android-sdk/* $HOME/.android-sdk/
+- echo "sdk.dir = $ANDROID_HOME" > local.properties
+- ./gradlew -S -Dscan build jacocoTestReport jacocoRootReport
 after_success:
-  - ./gradlew coveralls
+- ./gradlew coveralls
