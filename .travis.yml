@@ -3,7 +3,6 @@ cache:
   directories:
   - $HOME/.m2
   - $HOME/.gradle
-  - $HOME/.android
   - $HOME/.android-sdk
 install: true
 jdk: oraclejdk8
