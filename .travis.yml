@@ -7,7 +7,7 @@ cache:
   - $HOME/.m2
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
-  - $HOME/.android/build-cache
+  - $HOME/.android/
 jdk: oraclejdk8
 language: android
 android:
